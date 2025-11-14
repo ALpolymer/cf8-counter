@@ -1,17 +1,13 @@
 import Layout from "./components/layout/Layout.tsx";
+import Counter from "./components/Counter.tsx";
 
 function App() {
 
   return (
       <>
-        <Layout>
-            layout text
-
-
-            lallalaa
-
-        </Layout>
-
+          <Layout>
+             <Counter />
+          </Layout>
       </>
   )
 }
