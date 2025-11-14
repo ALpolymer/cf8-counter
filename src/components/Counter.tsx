@@ -1,4 +1,5 @@
 import * as React from "react";
+import CounterButton from "./ui/CounterButton.tsx";
 
 const Counter = () => {
     const [count, setCount] = React.useState<number>(0);
@@ -20,21 +21,21 @@ const Counter = () => {
            <p className="text-5xl font-bold">{count}</p>
 
             <div className="flex justify-center items-center gap-4">
-                <button onClick={increaseCount} className="bg-cf-dark-red text-white px-4 py-2 rounded-md"
-                >
-                    Increase
-                </button>
+                <CounterButton
+                 name={"Increase"}
+                 onClick={increaseCount}
+                />
+                <CounterButton
+                    name={"Decrease"}
+                    onClick={decreaseCount}
+                    disabled={count === 0}
+                />
+                <CounterButton
+                    name={"Reset"}
+                    onClick={resetCount}
+                    disabled={count === 0}
+                />
 
-                <button
-                    onClick={decreaseCount} className={`${count === 0 ? `disabled: bg-cf-gray`: `bg-cf-dark-red`} text-white px-4 py-2 rounded-md`}
-                >
-                    Decrease
-                </button>
-
-                <button onClick={resetCount} className={`${count === 0 ? `disabled: bg-cf-gray`: `bg-cf-dark-red`} text-white px-4 py-2 rounded-md`}
-                >
-                    Reset
-                </button>
 
             </div>
         </div>
