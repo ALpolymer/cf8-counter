@@ -1,24 +1,51 @@
 import * as React from "react";
 import CounterButton from "./ui/CounterButton.tsx";
 
+type CounterState = {
+    count: number,
+    lastAction?: string,
+    time?: string
+}
+
 const Counter = () => {
-    const [count, setCount] = React.useState<number>(0);
+
+    const getCurrentTime = () => new Date().toLocaleTimeString();
+
+    const [counterState, setCounterState] = React.useState<CounterState>({
+        count: 0,
+        lastAction: "",
+        time: "",
+    })
 
     const increaseCount = () => {
-        setCount(count + 1);
+        setCounterState({
+            count: counterState.count + 1,
+            lastAction: "Increase",
+            time: getCurrentTime(),
+        })
     }
 
     const decreaseCount = () => {
-        if (count > 0) setCount(count - 1);
+        if (counterState.count > 0) {
+            setCounterState({
+                count: counterState.count - 1,
+                lastAction: "Decrease",
+                time: getCurrentTime(),
+            })
+        }
     }
 
     const resetCount = () => {
-        setCount(0);
-    }
+        setCounterState({
+            count: 0,
+            lastAction: "Reset",
+            time: getCurrentTime(),
+        })
+        }
 
     return (
         <div className="flex flex-col justify-center items-center gap-4">
-           <p className="text-5xl font-bold">{count}</p>
+           <p className="text-5xl font-bold">{counterState.count}</p>
 
             <div className="flex justify-center items-center gap-4">
                 <CounterButton
@@ -28,16 +55,16 @@ const Counter = () => {
                 <CounterButton
                     name={"Decrease"}
                     onClick={decreaseCount}
-                    disabled={count === 0}
+                    disabled={counterState.count === 0}
                 />
                 <CounterButton
                     name={"Reset"}
                     onClick={resetCount}
-                    disabled={count === 0}
+                    disabled={counterState.count === 0}
                 />
-
-
             </div>
+
+            <p>Last Change:{` ${!counterState.lastAction ? "" : `${counterState.lastAction} at ${counterState.time}`} `}</p>
         </div>
 
     );
