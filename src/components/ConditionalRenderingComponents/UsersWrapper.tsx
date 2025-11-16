@@ -1,11 +1,11 @@
 import {useState} from "react";
-import UserDetails from "./UserDetails";
+import UserDetails from "./UserDetails.tsx";
 
 const UsersWrapper = () => {
     const [showOffLine, setShowOffLine] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-50 py-8 px-4">
+        <div className="min-h-1/2 bg-gray-50 py-8 px-4">
             <div className="max-w-4xl mx-auto">
                 <div className="flex items-center justify-between mb-6">
                     <h1 className="text-3xl font-bold text-gray-900">Users</h1>
